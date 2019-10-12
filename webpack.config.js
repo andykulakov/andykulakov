@@ -11,6 +11,11 @@ module.exports = {
     './src/scss/index.scss'
   ],
   devtool: 'source-map',
+  resolve: {
+    alias: {
+      '/public': Path.resolve(__dirname, '/src/public/')
+    }
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({

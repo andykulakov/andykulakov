@@ -19,7 +19,7 @@ h1 {
     @include glow-filter($color-red, true);
     &.--broken {
       @include glow-filter($color-red);
-      animation: glow 1s infinite;
+      animation: glow 2s infinite;
     }
   }
   @media (min-width: $breakpoint-tablet) {

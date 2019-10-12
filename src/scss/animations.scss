@@ -8,13 +8,16 @@
 }
 
 @keyframes glow {
+  5% {
+    @include glow-filter($color-red);
+  }
   10% {
     @include glow-filter($color-red, true);
   }
-  20% {
+  15% {
     @include glow-filter($color-red);
   }
-  30% {
+  20% {
     @include glow-filter($color-red, true);
   }
   100% {
