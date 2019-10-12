@@ -1,0 +1,21 @@
+@import "vars";
+
+html {
+  background: $color-white;
+  color: $color-black;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-white;
+  background: $color-black;
+  background: linear-gradient(to bottom, $color-grey-light, $color-black);
+  margin: 0;
+}
+
+header {
+  padding: $padding-md;
+}

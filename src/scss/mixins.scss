@@ -1,0 +1,9 @@
+@import "vars";
+
+@mixin glow-filter($color, $bright: false) {
+  @if $bright {
+    filter: drop-shadow(0 0 2px $color) drop-shadow(0 0 10px $color);
+  } @else {
+    filter: drop-shadow(0 0 2px $color);
+  }
+}

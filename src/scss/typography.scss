@@ -1,0 +1,36 @@
+@import "vars";
+@import "mixins";
+@import "animations";
+
+html {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-size: $font-size-md;
+  color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-text-stroke: 2px $color-red;
+  span {
+    @include glow-filter($color-red, true);
+    &.--broken {
+      @include glow-filter($color-red);
+      animation: glow 1s infinite;
+    }
+  }
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-lg;
+  }
+}
+
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: $font-weight-regular;
+  color: $color-green;
+  @include glow-filter($color-green, true);
+}

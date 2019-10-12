@@ -1,0 +1,23 @@
+@import "vars";
+@import "mixins";
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  10% {
+    @include glow-filter($color-red, true);
+  }
+  20% {
+    @include glow-filter($color-red);
+  }
+  30% {
+    @include glow-filter($color-red, true);
+  }
+  100% {
+    @include glow-filter($color-red, true);
+  }
+}

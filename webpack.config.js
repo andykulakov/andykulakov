@@ -51,7 +51,9 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               plugins: [
-                autoprefixer()
+                autoprefixer({
+                  browsers: ['last 2 version', '> 2%', 'IE 10']
+                })
               ],
               // config: {
               //   path: 'postcss.config.js'
