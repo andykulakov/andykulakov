@@ -11,6 +11,11 @@ module.exports = {
     './src/scss/index.scss'
   ],
   devtool: 'source-map',
+  resolve: {
+    alias: {
+      '/public': Path.resolve(__dirname, '/src/public/')
+    }
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -50,12 +55,12 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
+              autoprefixer: {
+                browsers: ['last 2 version', '> 2%', 'IE 10']
+              },
               plugins: [
                 autoprefixer()
               ],
-              // config: {
-              //   path: 'postcss.config.js'
-              // },
               sourceMap: true
             }
           },
