@@ -13,6 +13,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      'vue': 'vue/dist/vue.esm.js',
       '/public': Path.resolve(__dirname, '/src/public/')
     }
   },
