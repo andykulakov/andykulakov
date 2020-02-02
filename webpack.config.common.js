@@ -10,7 +10,6 @@ module.exports = {
     './src/js/index.js',
     './src/scss/index.scss'
   ],
-  devtool: 'source-map',
   resolve: {
     alias: {
       '/public': Path.resolve(__dirname, '/src/public/')
