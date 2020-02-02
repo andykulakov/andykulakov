@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VK App - Andrey Kulakov</title>
+  <meta name="description" content="Приложение на основе VK Open API - Andrey Kulakov - Frontend Developer - Online CV"/>
+  <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+  <script src="https://vk.com/js/api/openapi.js?166" type="text/javascript"></script>
+</head>
+<body>
+  <header class="vk-header">
+    <h1 class="vk-header__heading">VK App</h1>
+  </header>
+  <main id="vk-app" class="vk-app">
+    <vk-app></vk-app>
+  </main>
+  <script type="text/javascript">
+    VK.init({
+      apiId: 7303498
+    });
+  </script>
+</body>
+</html>
