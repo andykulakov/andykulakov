@@ -11,10 +11,10 @@
         <button @click="logOut" class="vk-btn vk-section-item">Log Out</button>
       </section>
       <section class="vk-section">
-        <form class="vk-form vk-section-item">
+        <form class="vk-form vk-section-item" @submit.prevent="searchFriends">
           <label for="vk-input" class="vk-label">Search For Friends</label>
           <input id="vk-input" ref="input" type="text" v-model="searchInput" class="vk-input"/>
-          <button @click.prevent="searchFriends" @keydown.prevent="searchFriends" class="vk-btn">Search</button>
+          <button @click.prevent="searchFriends" class="vk-btn">Search</button>
         </form>
         <p v-if="showError" class="vk-error vk-section-item">Type a name</p>
         <ul v-if="showFriends && friends.length > 0" class="vk-list vk-section-item">
