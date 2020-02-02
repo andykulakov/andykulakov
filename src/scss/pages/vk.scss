@@ -1,0 +1,15 @@
+@import "../index.scss";
+
+.vk-header {
+  padding: $padding-md 0;
+
+  &__heading {
+    font-size: $font-size-md;
+    @include glow-filter($color-red);
+    margin: 0;
+  }
+}
+
+.vk-app {
+  position: relative;
+}
