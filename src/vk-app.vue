@@ -14,7 +14,7 @@
         <form class="vk-form vk-section-item">
           <label for="vk-input" class="vk-label">Search For Friends</label>
           <input id="vk-input" ref="input" type="text" v-model="searchInput" class="vk-input"/>
-          <button @click.prevent="searchFriends" class="vk-btn">Search</button>
+          <button @click.prevent="searchFriends" @keydown.prevent="searchFriends" class="vk-btn">Search</button>
         </form>
         <p v-if="showError" class="vk-error vk-section-item">Type a name</p>
         <ul v-if="showFriends && friends.length > 0" class="vk-list vk-section-item">
@@ -200,6 +200,7 @@ $form-height: 40px;
     font-size: $font-size-base;
     -webkit-appearance: none;
     border: 1px solid $color-red;
+    border-radius: 0;
     padding: 0 $padding-sm;
 
     @media (min-width: $breakpoint-desktop) {
