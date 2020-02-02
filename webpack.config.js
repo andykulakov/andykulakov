@@ -31,7 +31,7 @@ module.exports = {
       chunks: ['vk']
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash:20].css',
+      filename: './css/[name].[hash:20].css',
       path: Path.resolve(__dirname, 'dist')
     }),
     new CopyWebpackPlugin([
@@ -90,7 +90,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: '[name].[hash:20].js',
+    filename: './js/[name].[hash:20].js',
     path: Path.resolve(__dirname, 'dist')
   }
 };
