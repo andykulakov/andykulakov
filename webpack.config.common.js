@@ -11,9 +11,9 @@ module.exports = {
     index: ['./src/js/index.js', './src/scss/pages/index.scss'],
     vk: ['@babel/polyfill', './src/js/vk.js', './src/scss/pages/vk.scss']
   },
-  devtool: 'source-map',
   resolve: {
     alias: {
+      'vue': 'vue/dist/vue.esm.js',
       '/public': Path.resolve(__dirname, '/src/public/')
     }
   },
