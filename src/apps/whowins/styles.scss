@@ -1,0 +1,420 @@
+$color-white: #FCFCFC;
+$color-yellow: #EAEBAD;
+$color-blue: #2D93AD;
+$color-black: #000000;
+
+$font-family-primary: 'Roboto', Arial, sans-serif;
+$font-family-headings: 'Permanent Marker', cursive;
+
+$font-size-sm: 1rem;
+$font-size-md: 1.25rem;
+$font-size-lg: 2rem;
+$font-size-xl: 3rem;
+
+$spacing-sm: 15px;
+
+$border-sm: 3px solid $color-black;
+$border-lg: 5px solid $color-black;
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1280px;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: $font-family-primary;
+  color: $color-black;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: 400;
+}
+
+.ww-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(20px, auto) minmax(280px, 727px) minmax(20px, auto);
+  grid-template-rows: auto 1fr auto;
+  grid-gap: $spacing-sm 0;
+  padding: 20px 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    grid-template-columns: minmax(20px, auto) minmax(728px, 1300px) minmax(20px, auto);
+    //grid-gap: 30px 0;
+  }
+
+  .ww-container__item {
+    grid-column-start: 2;
+  }
+}
+
+.ww-header {
+  position: relative;
+  background-color: $color-blue;
+  border: $border-lg;
+  padding: 25px $spacing-sm;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 50px;
+  }
+
+  .svg-batman {
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    width: 66px;
+    transform: rotate(-30deg);
+    transform-origin: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 170px;
+      right: 25%;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: 360px;
+      top: 70px;
+      right: 50%;
+      transform: rotate(-30deg) translateX(50%);
+    }
+  }
+
+  .svg-superman {
+    position: absolute;
+    bottom: -22px;
+    right: 10px;
+    width: 66px;
+    transform: rotate(20deg);
+    transform-origin: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 150px;
+      bottom: -45px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: 375px;
+      top: 120px;
+      right: 30px;
+    }
+  }
+}
+
+.ww-footer {
+  text-align: center;
+  background-color: $color-blue;
+  border: $border-lg;
+  padding: 25px $spacing-sm;
+  //margin-top: $spacing-sm;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 30px 50px;
+  }
+
+  .ww-copyrights {
+    margin-top: 25px;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-top: 0;
+    }
+
+    .ww-copyrights__item {
+      color: $color-white;
+
+      + .ww-copyrights__item {
+        margin-top: $spacing-sm;
+      }
+
+      a {
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.ww-main {
+  //padding-top: 25px;
+}
+
+.ww-h1 {
+  color: $color-white;
+  font-family: $font-family-headings;
+  font-size: $font-size-lg;
+  text-transform: uppercase;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-xl;
+  }
+}
+
+.ww-h2 {
+  font-family: $font-family-headings;
+  font-size: $font-size-md;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-lg;
+  }
+
+  &_margin {
+    margin-bottom: $spacing-sm;
+
+    @media (min-width: $breakpoint-tablet) {
+      //margin-bottom: 30px;
+    }
+  }
+}
+
+.ww-h2_block {
+  color: $color-white;
+  background-color: $color-black;
+  padding: $spacing-sm;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 30px 50px;
+  }
+}
+
+.ww-button {
+  display: block;
+  color: $color-white;
+  font-size: $font-size-md;
+  background-color: $color-blue;
+  border: 3px solid $color-blue;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+  padding: 25px;
+
+  @media (min-width: $breakpoint-tablet) {
+    min-width: 300px;
+  }
+
+  &:hover {
+    color: $color-blue;
+    background-color: $color-white;
+  }
+}
+
+.ww-p-block {
+  background-color: $color-yellow;
+  border: $border-sm;
+  padding: $spacing-sm;
+  margin: $spacing-sm 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: $spacing-sm 20px;
+    margin: 0;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    max-width: 75%;
+  }
+
+  .ww-p-block__item {
+    + .ww-p-block__item {
+      margin-top: $spacing-sm;
+    }
+
+    strong {
+      font-weight: 500;
+    }
+  }
+}
+
+.ww-section {
+  @media (min-width: $breakpoint-tablet) {
+    margin-bottom: $spacing-sm;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    border: $border-lg;
+    padding: 50px 30px 30px;
+  }
+
+  .ww-h2 {
+    @media (min-width: $breakpoint-tablet) {
+      padding: 0 20px;
+    }
+  }
+}
+
+.ww-select {
+  position: relative;
+
+  &__label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  &__input {
+    width: 100%;
+    background-color: $color-yellow;
+    border: $border-sm;
+    padding: $spacing-sm;
+
+    &:focus {
+      outline: 3px solid $color-blue;
+    }
+  }
+
+  &__listbox {
+    width: 100%;
+    max-height: 135px;
+    position: absolute;
+    top: 100%;
+    //transform: translateY(-3px);
+    list-style: none;
+    background-color: $color-yellow;
+    border: $border-sm;
+    border-top: none;
+    overflow-y: auto;
+    z-index: 1;
+
+    &:not(.-opened) {
+      display: none;
+    }
+
+    &_empty {
+      padding: 10px $spacing-sm;
+    }
+
+    &__option {
+      padding: 10px $spacing-sm;
+
+      &:hover {
+        color: $color-white;
+        background-color: $color-blue;
+        cursor: pointer;
+      }
+
+      &_focused {
+        color: $color-white;
+        background-color: $color-blue;
+      }
+    }
+  }
+}
+
+.ww-block-test {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "heading"
+                       "heroA"
+                       "heroB"
+                       "action";
+  grid-gap: $spacing-sm;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "heading heading"
+                         "heroA heroB"
+                         "action action";
+  }
+
+  &__heading {
+    grid-area: heading;
+  }
+
+  &__hero {
+    @media (min-width: $breakpoint-desktop) {
+      border: $border-lg;
+      padding: 30px 50px;
+    }
+
+    &_a {
+      grid-area: heroA;
+    }
+
+    &_b {
+      grid-area: heroB;
+    }
+
+    &__info {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      background-color: $color-yellow;
+      text-align: center;
+      margin-top: 100px;
+
+      @media (min-width: $breakpoint-tablet) {
+        height: 500px;
+      }
+
+      &__name {
+        min-width: 150px;
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 0;
+        font-size: $font-size-md;
+        font-weight: 500;
+        border-radius: 8px;
+        background-color: $color-white;
+        border: $border-sm;
+        // TODO: убрать повтор
+        text-align: left;
+        padding: 15px 20px;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 19px;
+          border-top: 20px solid $color-white;
+          border-left: 14px solid transparent;
+          border-right: 14px solid transparent;
+        }
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 15px;
+          border-top: 24px solid $color-black;
+          border-left: 18px solid transparent;
+          border-right: 18px solid transparent;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      svg {
+        width: 50%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .ww-button {
+    width: 100%;
+    grid-area: action;
+    margin: 0 auto;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: auto;
+    }
+  }
+}

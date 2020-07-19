@@ -8,23 +8,34 @@
     "dev": "webpack --config webpack.config.dev.js",
     "build": "webpack --config webpack.config.prod.js",
     "watch": "webpack --config webpack.config.dev.js --watch",
-    "start": "webpack-dev-server --config webpack.config.dev.js --open"
+    "start": "webpack-dev-server --config webpack.config.dev.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
+    "@babel/core": "^7.10.4",
     "@babel/polyfill": "^7.8.3",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
     "autoprefixer": "^9.6.1",
-    "babel-loader": "^8.0.6",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.8.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.6",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
+    "prettier": "^2.0.5",
     "sass-loader": "^8.0.0",
+    "svg-sprite-loader": "^5.0.0",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.0",
@@ -33,6 +44,13 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "normalize.css": "^8.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1",
     "vue": "^2.6.11"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }
