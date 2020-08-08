@@ -154,7 +154,9 @@ const Select = ({ value, options, label, id, error, onChange }) => {
           id={`listbox-${id}`}
           ref={listboxEl}
           className={`ww-select__listbox ${
-            listboxOpened && inputValue.length > 0 ? "-opened" : ""
+            listboxOpened && inputValue.length > 0
+              ? "ww-select__listbox_opened"
+              : ""
           }`}
           role="listbox"
           aria-labelledby={`label-${id}`}
@@ -183,7 +185,9 @@ const Select = ({ value, options, label, id, error, onChange }) => {
       ) : (
         <div
           className={`ww-select__listbox ww-select__listbox_empty ${
-            listboxOpened && inputValue.length > 0 ? "ww-select__listbox_opened" : ""
+            listboxOpened && inputValue.length > 0
+              ? "ww-select__listbox_opened"
+              : ""
           }`}
         >
           No results
