@@ -1,17 +1,41 @@
 import React, { useState, useEffect } from "react";
+import useForm from "./components/useForm";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { render } from "react-dom";
 
-// import 'normalize.css';
 import Svg from "./components/Svg";
-import Select from "./components/Select";
+import HeroSelect from "./components/HeroSelect";
+import Results from "./components/Results";
+
 import supermanSvg from "./images/superman.svg";
 import batmanSvg from "./images/batman.svg";
 
 const App = () => {
+  const switchProps = {
+    classNames: "switch",
+    timeout: { enter: 300, exit: 150 },
+  };
   const API = "https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api";
+  const {
+    heroesForm,
+    errors,
+    hasErrors,
+    handleChange,
+    handleSubmit,
+    handleReset,
+  } = useForm(startTesting);
   const [heroes, setHeroes] = useState([]);
-  const [heroA, setHeroA] = useState({});
-  const [heroB, setHeroB] = useState({});
+
+  const [mode, setMode] = useState("select");
+  useEffect(() => {
+    if (mode && document.querySelector("#ww-test")) {
+      document.querySelector("#ww-test").scrollIntoView({ behavior: "smooth" });
+    }
+  }, [mode]);
+
+  useEffect(() => {
+    fetchHeroes();
+  }, []);
 
   async function fetchHeroes() {
     try {
@@ -23,11 +47,56 @@ const App = () => {
     }
   }
 
-  useEffect(() => {
-    fetchHeroes();
-  }, []);
+  function startTesting() {
+    setMode("results");
+  }
 
-  function startTesting() {}
+  function resetApp() {
+    handleReset();
+    setMode("select");
+  }
+
+  const heroSelects = Object.keys(heroesForm).map((key, index) => (
+    <HeroSelect
+      key={`hero-select-${key}`}
+      className={`ww-form__hero ww-form__hero_${key}`}
+      name={key}
+      hero={heroesForm[key]}
+      heroes={heroes}
+      error={errors[key]}
+      svgName={(index % 2 && "superman") || null}
+      onHeroChange={(value) => handleChange(value, key)}
+    />
+  ));
+
+  const mainBlock =
+    mode === "select" ? (
+      <CSSTransition key="select" {...switchProps}>
+        <form className="ww-form" onSubmit={handleSubmit}>
+          {heroSelects}
+          <button
+            type="submit"
+            className={`ww-button ${hasErrors ? "ww-button_error" : ""}`}
+          >
+            <SwitchTransition>
+              {!hasErrors ? (
+                <CSSTransition key="no-errors" {...switchProps}>
+                  <span>Start the fight</span>
+                </CSSTransition>
+              ) : (
+                <CSSTransition key="errors" {...switchProps}>
+                  <span>Choose Heroes</span>
+                </CSSTransition>
+              )}
+            </SwitchTransition>
+          </button>
+        </form>
+      </CSSTransition>
+    ) : (
+      <CSSTransition key="results" {...switchProps}>
+        <Results heroes={Object.values(heroesForm)} resetApp={resetApp} />
+      </CSSTransition>
+    );
 
   return (
     <div className="ww-container">
@@ -37,74 +106,32 @@ const App = () => {
         <Svg className="svg-batman" svg={batmanSvg} />
       </header>
       <main className="ww-container__item ww-main">
-        <div className="ww-section">
+        <section className="ww-section">
           <h2 className="ww-h2 ww-h2_margin">What's this</h2>
-          <div className="ww-p-block">
-            <p className="ww-p-block__item">
+          <div className="ww-block-p">
+            <p className="ww-block-p__item">
               <strong>
                 Who would win in a fight - Batman or Superman? Who’s stronger -
                 Hulk or The Thing?
               </strong>
             </p>
-            <p className="ww-p-block__item">
-              If you like comic books or superhero movies, you definately had a
-              couple of fights about this stuff with your fellow geeks.
+            <p className="ww-block-p__item">
+              If you like comic books or superhero movies, you definitely had a
+              couple of fights about this with your friends.
             </p>
-            <p className="ww-p-block__item">
+            <p className="ww-block-p__item">
               This is the ultimate tool to test you favourite superheroes and
               villians.
             </p>
-            <p className="ww-p-block__item">
+            <p className="ww-block-p__item">
               Choose your pair and let them fight.
             </p>
           </div>
-        </div>
-        <div className="ww-block-test">
-          <h2 className="ww-h2 ww-h2_block ww-block-test__heading">
-            Test Your Heroes
-          </h2>
-          <div className="ww-block-test__hero ww-block-test__hero_a">
-            <Select
-              id="select-A"
-              value={heroA}
-              options={heroes}
-              label="A: Choose Your Hero"
-              onChange={setHeroA}
-            />
-            <div className="ww-block-test__hero__info">
-              <div className="ww-block-test__hero__info__name">
-                {heroA.name || "..."}
-              </div>
-              {heroA.images && heroA.images.md ? (
-                <img src={heroA.images.md} alt="Hero A" />
-              ) : (
-                <Svg svg={batmanSvg} color="grey" />
-              )}
-            </div>
-          </div>
-          <div className="ww-block-test__hero ww-block-test__hero_b">
-            <Select
-              id="select-B"
-              value={heroB}
-              options={heroes}
-              label="B: Choose Your Hero"
-              onChange={setHeroB}
-            />
-            <div className="ww-block-test__hero__info">
-              <div className="ww-block-test__hero__info__name">
-                {heroB.name || "..."}
-              </div>
-              {heroB.images && heroB.images.md ? (
-                <img src={heroB.images.md} alt="Hero A" />
-              ) : (
-                <Svg svg={supermanSvg} color="grey" />
-              )}
-            </div>
-          </div>
-          <button type="button" className="ww-button" onClick={startTesting}>
-            Test
-          </button>
-        </div>
+        </section>
+        <section id="ww-test" className="ww-test">
+          <h2 className="ww-h2 ww-h2_block">Test Your Heroes</h2>
+          <SwitchTransition>{mainBlock}</SwitchTransition>
+        </section>
       </main>
       <footer className="ww-footer ww-container__item">
         <h2 className="ww-h1">Who Wins</h2>

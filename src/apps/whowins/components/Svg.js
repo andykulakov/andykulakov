@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const Svg = ({ className, svg, color }) => {
-  const SvgContainer = styled.svg`
-    color: ${color || "inherit"};
-    fill: currentColor;
-    stroke: none;
-  `;
+const SvgContainer = styled.svg`
+  color: ${(props) => props.color || "inherit"};
+  fill: currentColor;
+  stroke: none;
+`;
 
+const Svg = ({ className, svg, color }) => {
   return (
-    <SvgContainer className={className} viewBox={svg.viewBox}>
+    <SvgContainer className={className} viewBox={svg.viewBox} color={color}>
       <use xlinkHref={`#${svg.id}`} />
     </SvgContainer>
   );
