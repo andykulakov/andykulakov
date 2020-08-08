@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useForm from "./components/useForm";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { render } from "react-dom";
@@ -16,6 +16,7 @@ const App = () => {
     timeout: { enter: 300, exit: 150 },
   };
   const API = "https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api";
+  const isFirstUpdate = useRef(true);
   const {
     heroesForm,
     errors,
@@ -28,6 +29,10 @@ const App = () => {
 
   const [mode, setMode] = useState("select");
   useEffect(() => {
+    if (isFirstUpdate.current) {
+      isFirstUpdate.current = false;
+      return;
+    }
     if (mode && document.querySelector("#ww-test")) {
       document.querySelector("#ww-test").scrollIntoView({ behavior: "smooth" });
     }

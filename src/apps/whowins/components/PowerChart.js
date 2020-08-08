@@ -15,10 +15,7 @@ const PowerChart = ({ power, heroes }) => {
   useEffect(() => {
     let winner = null;
     heroes.forEach((hero) => {
-      if (
-        !winner ||
-        Math.max(+winner.powerstats[power], +hero.powerstats[power])
-      ) {
+      if (!winner || +hero.powerstats[power] > +winner.powerstats[power]) {
         winner = hero;
       }
     });

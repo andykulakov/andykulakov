@@ -22,7 +22,7 @@ const Results = ({ heroes, resetApp }) => {
     const results = heroes.map((hero) => ({
       ...hero,
       result: Object.keys(hero.powerstats).reduce((number, power) => {
-        return (number += power * POWERSTATS[power]);
+        return (number += hero.powerstats[power] * POWERSTATS[power]);
       }, 0),
     }));
     results.forEach((hero) => {

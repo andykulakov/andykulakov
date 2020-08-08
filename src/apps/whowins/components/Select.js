@@ -135,6 +135,7 @@ const Select = ({ value, options, label, id, error, onChange }) => {
         value={inputValue}
         placeholder="Search"
         type="text"
+        autoComplete="off"
         aria-labelledby={`label-${id}`}
         aria-autocomplete="list"
         aria-controls={`listbox-${id}`}
