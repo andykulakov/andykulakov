@@ -1,0 +1,88 @@
+import React, { useState, useEffect } from "react";
+
+import Svg from "../components/Svg";
+import Select from "./Select";
+
+import supermanSvg from "../images/superman.svg";
+import batmanSvg from "../images/batman.svg";
+
+const HeroSelect = ({
+  name,
+  hero,
+  heroes,
+  error,
+  svgName = "batman",
+  className,
+  onHeroChange,
+}) => {
+  const [loading, setLoading] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (hero) {
+      setLoaded(false);
+      setLoading(true);
+    }
+  }, [hero]);
+
+  function getSvgByName() {
+    switch (svgName) {
+      case "superman":
+        return supermanSvg;
+      case "batman":
+      default:
+        return batmanSvg;
+    }
+  }
+
+  function onImageLoad() {
+    setLoading(false);
+    setLoaded(true);
+  }
+
+  return (
+    <div className={`ww-hero-select ${className}`}>
+      <Select
+        id={`select-${name}`}
+        value={hero}
+        options={heroes}
+        label={`${name}: Choose Your Hero`}
+        error={error}
+        onChange={onHeroChange}
+      />
+      <figure
+        className={`ww-hero-select__info ${
+          loading ? "ww-hero-select__info_loading" : ""
+        }
+          ${loaded ? "ww-hero-select_loaded" : ""}`}
+      >
+        <figcaption className="ww-cloud">
+          {(hero && hero.name) || "..."}
+        </figcaption>
+        <div
+          className={`ww-hero-select__info__placeholder ${
+            loading ? "ww-hero-select__info__placeholder_loading" : ""
+          }
+          ${loaded ? "ww-hero-select__info__placeholder_loaded" : ""}`}
+        >
+          <Svg svg={getSvgByName()} color="#808080" />
+        </div>
+        {hero && hero.images && hero.images.sm && (
+          <picture>
+            <source media="(min-width: 1280px)" srcSet={hero.images.lg} />
+            <img
+              src={hero.images.md}
+              alt={name}
+              onLoad={() => onImageLoad()}
+              className={`ww-hero-select__info__image ${
+                loaded ? "ww-hero-select__info__image_loaded" : ""
+              }`}
+            />
+          </picture>
+        )}
+      </figure>
+    </div>
+  );
+};
+
+export default HeroSelect;

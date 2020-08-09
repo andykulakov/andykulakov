@@ -1,0 +1,667 @@
+$color-white: #FCFCFC;
+$color-yellow: #EAEBAD;
+$color-blue: #2D93AD;
+$color-green: #70B96E;
+$color-red:  #FC595B;
+$color-black: #000000;
+
+$font-family-primary: 'Roboto', Arial, sans-serif;
+$font-family-headings: 'Permanent Marker', cursive;
+
+$font-size-sm: 1rem;
+$font-size-md: 1.25rem;
+$font-size-lg: 2rem;
+$font-size-xl: 3rem;
+
+$spacing-sm: 15px;
+
+$border-sm: 3px solid $color-black;
+$border-lg: 5px solid $color-black;
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1280px;
+
+@keyframes pulsation {
+  0% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  50% {
+    transform: scale(1.2) translate(-50%, -50%);
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-family: $font-family-primary;
+  color: $color-black;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: $font-family-primary;
+  font-size: $font-size-sm;
+  font-weight: 400;
+}
+
+.ww-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(20px, auto) minmax(280px, 727px) minmax(20px, auto);
+  grid-template-rows: auto 1fr auto;
+  grid-gap: $spacing-sm 0;
+  padding: 20px 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    grid-template-columns: minmax(20px, auto) minmax(728px, 1300px) minmax(20px, auto);
+  }
+
+  .ww-container__item {
+    grid-column-start: 2;
+  }
+}
+
+.ww-header {
+  position: relative;
+  background-color: $color-blue;
+  border: $border-lg;
+  padding: 25px $spacing-sm;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 50px;
+  }
+
+  .svg-batman {
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    width: 66px;
+    transform: rotate(-30deg);
+    transform-origin: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 170px;
+      right: 25%;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: 360px;
+      top: 70px;
+      right: 50%;
+      transform: rotate(-30deg) translateX(50%);
+    }
+  }
+
+  .svg-superman {
+    position: absolute;
+    bottom: -22px;
+    right: 10px;
+    width: 66px;
+    transform: rotate(20deg);
+    transform-origin: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 150px;
+      bottom: -45px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: 375px;
+      top: 120px;
+      right: 30px;
+    }
+  }
+}
+
+.ww-footer {
+  text-align: center;
+  background-color: $color-blue;
+  border: $border-lg;
+  padding: 25px $spacing-sm;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 30px 50px;
+  }
+
+  .ww-copyrights {
+    font-weight: 300;
+    margin-top: 25px;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-top: 0;
+    }
+
+    .ww-copyrights__item {
+      color: $color-white;
+
+      + .ww-copyrights__item {
+        margin-top: $spacing-sm;
+      }
+
+      a {
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.ww-h1 {
+  color: $color-white;
+  font-family: $font-family-headings;
+  font-size: $font-size-lg;
+  text-transform: uppercase;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-xl;
+  }
+}
+
+.ww-h2 {
+  font-family: $font-family-headings;
+  font-size: $font-size-md;
+
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-lg;
+  }
+
+  &_margin {
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.ww-h2_block {
+  color: $color-white;
+  background-color: $color-black;
+  padding: $spacing-sm;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 30px 50px;
+  }
+}
+
+.ww-h3 {
+  font-weight: 500;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.ww-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-white;
+  background-color: $color-green;
+  border: $border-sm;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+  padding: 15px;
+
+  @media (min-width: $breakpoint-tablet) {
+    min-width: 300px;
+    font-size: $font-size-md;
+    padding: 25px;
+  }
+
+  &:hover {
+    color: $color-green;
+    background-color: $color-white;
+
+    svg {
+      color: $color-green;
+    }
+  }
+
+  &:focus {
+    outline: 3px solid $color-blue;
+  }
+
+  &_error {
+    background-color: $color-red;
+
+    &:hover {
+      color: $color-red;
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $color-white;
+    transition: color 300ms ease-in-out;
+    margin-right: 20px;
+  }
+}
+
+.ww-block-p {
+  background-color: $color-yellow;
+  border: $border-sm;
+  padding: $spacing-sm;
+  margin: $spacing-sm 0;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: $spacing-sm 20px;
+    margin: 0;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    max-width: 75%;
+  }
+
+  &__item {
+    + .ww-block-p__item {
+      margin-top: $spacing-sm;
+    }
+
+    strong {
+      font-weight: 500;
+    }
+  }
+}
+
+.ww-section {
+  @media (min-width: $breakpoint-tablet) {
+    margin-bottom: $spacing-sm;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    border: $border-lg;
+    padding: 50px 30px 30px;
+  }
+
+  .ww-h2 {
+    @media (min-width: $breakpoint-tablet) {
+      padding: 0 20px;
+    }
+  }
+}
+
+.ww-select {
+  position: relative;
+
+  &__label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  &__input {
+    width: 100%;
+    background-color: $color-yellow;
+    border: $border-sm;
+    border-radius: 0;
+    transition: border-color 300ms ease-in-out;
+    padding: $spacing-sm;
+
+    &:focus {
+      outline: 3px solid $color-blue;
+    }
+  }
+
+  &__listbox {
+    width: 100%;
+    max-height: 135px;
+    position: absolute;
+    top: 100%;
+    list-style: none;
+    background-color: $color-yellow;
+    border: $border-sm;
+    border-top: none;
+    overflow-y: auto;
+    z-index: 10;
+
+    &:not(.ww-select__listbox_opened) {
+      display: none;
+    }
+
+    &_empty {
+      padding: 10px $spacing-sm;
+    }
+
+    &__option {
+      padding: 10px $spacing-sm;
+
+      &:hover {
+        color: $color-white;
+        background-color: $color-blue;
+        cursor: pointer;
+      }
+
+      &_focused {
+        color: $color-white;
+        background-color: $color-blue;
+      }
+    }
+  }
+
+  &_error {
+    .ww-select__input {
+      border-color: $color-red;
+    }
+  }
+}
+
+.ww-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "heroA"
+                       "heroB"
+                       "action";
+  grid-gap: $spacing-sm;
+  margin-top: $spacing-sm;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "heroA heroB"
+                         "action action";
+  }
+
+  &__hero {
+    &_A {
+      grid-area: heroA;
+    }
+
+    &_B {
+      grid-area: heroB;
+    }
+  }
+
+  .ww-button {
+    width: 100%;
+    grid-area: action;
+    margin: 0 auto;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: auto;
+    }
+  }
+}
+
+.ww-cloud {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  border-radius: 8px;
+  background-color: $color-white;
+  border: $border-sm;
+  padding: 15px 20px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 19px;
+    border-top: 19px solid $color-white;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 15px;
+    border-top: 24px solid $color-black;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+  }
+}
+
+.ww-hero-select {
+  @media (min-width: $breakpoint-desktop) {
+    border: $border-lg;
+    padding: 30px 50px;
+  }
+
+  &__info {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    background-color: $color-yellow;
+    margin-top: 90px;
+
+    @media (min-width: $breakpoint-tablet) {
+      height: 500px;
+    }
+
+    .ww-cloud {
+      min-width: 150px;
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 0;
+      font-size: $font-size-md;
+      z-index: 1;
+    }
+
+    &__placeholder {
+      width: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transform-origin: top left;
+      transition: opacity 500ms ease-in-out;
+
+      &_loading {
+        animation: pulsation 1s ease-in-out infinite;
+      }
+
+      &_loaded {
+        animation: pulsation 1s ease-in-out forwards;
+        opacity: 0;
+      }
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 300ms ease-in-out;
+
+      &_loaded {
+        opacity: 1;
+        transition-delay: 300ms;
+      }
+
+      &_loading {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.switch-enter {
+  opacity: 0;
+}
+
+.switch-enter.switch-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+.switch-exit {
+  opacity: 1;
+}
+
+.switch-exit.switch-exit-active {
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+.ww-results {
+  margin-top: $spacing-sm;
+
+  &__info {
+    @media (min-width: $breakpoint-tablet) {
+      border: $border-lg;
+      padding: 30px;
+    }
+
+    &__names {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-gap: $spacing-sm;
+      margin-bottom: 30px;
+
+      @media (min-width: $breakpoint-tablet) {
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  &__winner {
+    text-align: center;
+    font-size: $font-size-lg;
+    font-weight: 700;
+    margin-top: 30px;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-xl;
+      margin-top: 50px;
+    }
+  }
+
+  &__reset {
+    width: 100%;
+    margin: $spacing-sm auto 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: auto;
+    }
+  }
+
+  .ww-cloud {
+    width: 100%;
+    padding: 10px;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: auto;
+      font-size: $font-size-md;
+      padding: 15px 20px;
+    }
+
+    &:nth-child(odd) {
+      margin-left: auto;
+
+      &::before {
+        left: auto;
+        right: 15px;
+      }
+
+      &::after {
+        left: auto;
+        right: 19px;
+      }
+    }
+
+    &:nth-child(even) {
+      margin-right: auto;
+    }
+  }
+
+  .ww-power-chart {
+    + .ww-power-chart {
+      margin-top: 30px;
+    }
+  }
+
+  .ww-button {
+    width: 100%;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: auto;
+    }
+  }
+}
+
+.ww-power-chart {
+  &.chart-appear {
+    .ww-power-chart__bars-wrapper__bar::after {
+      transform: scaleX(0);
+    }
+  }
+
+  &.chart-appear.chart-appear-active {
+    .ww-power-chart__bars-wrapper__bar::after {
+      transform: scaleX(1);
+      transition: transform 1000ms ease-in-out;
+    }
+  }
+
+  //@for $i from 1 through 6 {
+  //  &:nth-child(#{$i}n) {
+  //    .ww-power-chart__bars-wrapper__bar::after {
+  //      transition-delay: #{($i - 1) * 0.5}s;
+  //    }
+  //  }
+  //}
+
+  .ww-h3 {
+    margin-bottom: $spacing-sm;
+  }
+
+  &__bars-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    &__bar {
+      font-weight: 500;
+
+      &:nth-child(odd) {
+        text-align: right;
+
+        .ww-power-chart__bars-wrapper__bar__value {
+          padding-right: 5px;
+
+          @media (min-width: $breakpoint-tablet) {
+            padding-right: 10px;
+          }
+        }
+      }
+
+      &:nth-child(even) {
+        .ww-power-chart__bars-wrapper__bar__value {
+          padding-left: 5px;
+
+          @media (min-width: $breakpoint-tablet) {
+            padding-left: 10px;
+          }
+        }
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        height: 5px;
+      }
+
+      &__value {
+        color: $color-red;
+
+        &_winning {
+          color: $color-green;
+        }
+      }
+    }
+  }
+}
