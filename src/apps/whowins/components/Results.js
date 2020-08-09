@@ -35,7 +35,8 @@ const Results = ({ heroes, resetApp }) => {
 
   const powerCharts = Object.keys(POWERSTATS).map((power) => (
     <CSSTransition
-      appear
+      in={true}
+      appear={true}
       key={`power-chart-${power}`}
       classNames="chart"
       timeout={{ appear: 1000 }}

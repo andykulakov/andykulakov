@@ -604,6 +604,7 @@ button {
   &.chart-appear.chart-appear-active {
     .ww-power-chart__bars-wrapper__bar::after {
       transform: scaleX(1);
+      transition: transform 1000ms ease-in-out;
     }
   }
 
@@ -652,7 +653,6 @@ button {
         content: "";
         display: block;
         height: 5px;
-        transition: transform 1000ms ease-in-out;
       }
 
       &__value {

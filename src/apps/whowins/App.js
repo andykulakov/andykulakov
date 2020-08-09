@@ -125,7 +125,7 @@ const App = () => {
               couple of fights about this with your friends.
             </p>
             <p className="ww-block-p__item">
-              This is the ultimate tool to test you favourite superheroes and
+              This is the ultimate tool to test your favourite superheroes and
               villians.
             </p>
             <p className="ww-block-p__item">
