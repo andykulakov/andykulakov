@@ -1,8 +1,8 @@
 $color-white: #FCFCFC;
 $color-yellow: #EAEBAD;
-$color-blue: #2D93AD;
-$color-green: #70B96E;
-$color-red:  #FC595B;
+$color-blue: #227F96;
+$color-green: #497E49;
+$color-red:  #CB4345;
 $color-black: #000000;
 
 $font-family-primary: 'Roboto', Arial, sans-serif;
@@ -359,7 +359,7 @@ button {
 
 .ww-form {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, minmax(0, 1fr));
   grid-template-areas: "heroA"
                        "heroB"
                        "action";
@@ -608,14 +608,6 @@ button {
     }
   }
 
-  //@for $i from 1 through 6 {
-  //  &:nth-child(#{$i}n) {
-  //    .ww-power-chart__bars-wrapper__bar::after {
-  //      transition-delay: #{($i - 1) * 0.5}s;
-  //    }
-  //  }
-  //}
-
   .ww-h3 {
     margin-bottom: $spacing-sm;
   }
@@ -653,14 +645,6 @@ button {
         content: "";
         display: block;
         height: 5px;
-      }
-
-      &__value {
-        color: $color-red;
-
-        &_winning {
-          color: $color-green;
-        }
       }
     }
   }

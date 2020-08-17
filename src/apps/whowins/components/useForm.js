@@ -18,7 +18,6 @@ const useForm = (callback) => {
 
   useEffect(() => {
     if (isSubmitting && Object.values(errors).every((value) => !value)) {
-      console.log("callback");
       callback();
     }
 
