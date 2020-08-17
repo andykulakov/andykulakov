@@ -52,7 +52,8 @@ const Select = ({ value, options, label, id, error, onChange }) => {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (!event.path.includes(selectEl.current)) {
+      const path = event.path || (event.composedPath && event.composedPath());
+      if (!path.includes(selectEl.current)) {
         resetSelect();
       }
     }
@@ -111,6 +112,33 @@ const Select = ({ value, options, label, id, error, onChange }) => {
     }
   }
 
+  const ListboxTag = listboxOpened && filteredOptions.length > 0 ? "ul" : "div";
+
+  const listboxOptions =
+    listboxOpened && filteredOptions.length > 0 ? (
+      filteredOptions.map((option, i) => (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+        <li
+          key={`select-option-${i}`}
+          id={`option-${id}-${option.id}`}
+          className={`ww-select__listbox__option ${
+            i === focusedOptionIndex ? "ww-select__listbox__option_focused" : ""
+          } ${
+            value && value.id === option.id
+              ? "ww-select__listbox__option_active"
+              : ""
+          }`}
+          role="option"
+          aria-selected={i === focusedOptionIndex}
+          onClick={() => chooseOption(option)}
+        >
+          {option.name}
+        </li>
+      ))
+    ) : (
+      <span>No results</span>
+    );
+
   return (
     <div
       ref={selectEl}
@@ -150,50 +178,21 @@ const Select = ({ value, options, label, id, error, onChange }) => {
         onKeyDown={(e) => handleKeyPressOption(e)}
         onFocus={() => setListboxOpened(true)}
       />
-      {filteredOptions.length > 0 ? (
-        <ul
-          id={`listbox-${id}`}
-          ref={listboxEl}
-          className={`ww-select__listbox ${
-            listboxOpened && inputValue.length > 0
-              ? "ww-select__listbox_opened"
-              : ""
-          }`}
-          role="listbox"
-          aria-labelledby={`label-${id}`}
-        >
-          {filteredOptions.map((option, i) => (
-            <li
-              key={`select-option-${i}`}
-              id={`option-${id}-${option.id}`}
-              className={`ww-select__listbox__option ${
-                i === focusedOptionIndex
-                  ? "ww-select__listbox__option_focused"
-                  : ""
-              } ${
-                value && value.id === option.id
-                  ? "ww-select__listbox__option_active"
-                  : ""
-              }`}
-              role="option"
-              aria-selected={i === focusedOptionIndex}
-              onClick={() => chooseOption(option)}
-            >
-              {option.name}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div
-          className={`ww-select__listbox ww-select__listbox_empty ${
-            listboxOpened && inputValue.length > 0
-              ? "ww-select__listbox_opened"
-              : ""
-          }`}
-        >
-          No results
-        </div>
-      )}
+      <ListboxTag
+        id={`listbox-${id}`}
+        ref={listboxEl}
+        className={`ww-select__listbox ${
+          filteredOptions.length === 0 ? "ww-select__listbox_empty" : ""
+        } ${
+          listboxOpened && inputValue.length > 0
+            ? "ww-select__listbox_opened"
+            : ""
+        }`}
+        role="listbox"
+        aria-labelledby={`label-${id}`}
+      >
+        {listboxOptions}
+      </ListboxTag>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Svg from "../components/Svg";
 import Select from "./Select";
 
-import supermanSvg from "../images/superman.svg";
 import batmanSvg from "../images/batman.svg";
 
 const HeroSelect = ({
@@ -11,7 +10,7 @@ const HeroSelect = ({
   hero,
   heroes,
   error,
-  svgName = "batman",
+  svg = batmanSvg,
   className,
   onHeroChange,
 }) => {
@@ -24,16 +23,6 @@ const HeroSelect = ({
       setLoading(true);
     }
   }, [hero]);
-
-  function getSvgByName() {
-    switch (svgName) {
-      case "superman":
-        return supermanSvg;
-      case "batman":
-      default:
-        return batmanSvg;
-    }
-  }
 
   function onImageLoad() {
     setLoading(false);
@@ -65,7 +54,7 @@ const HeroSelect = ({
           }
           ${loaded ? "ww-hero-select__info__placeholder_loaded" : ""}`}
         >
-          <Svg svg={getSvgByName()} color="#808080" />
+          <Svg svg={svg} color="#808080" />
         </div>
         {hero && hero.images && hero.images.sm && (
           <picture>
