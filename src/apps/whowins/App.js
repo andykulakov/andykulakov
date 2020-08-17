@@ -61,7 +61,7 @@ const App = () => {
     setMode("select");
   }
 
-  const heroSelects = Object.keys(heroesForm).map((key, index) => (
+  const heroSelects = Object.keys(heroesForm).map((key) => (
     <HeroSelect
       key={`hero-select-${key}`}
       className={`ww-form__hero ww-form__hero_${key}`}
@@ -69,7 +69,7 @@ const App = () => {
       hero={heroesForm[key]}
       heroes={heroes}
       error={errors[key]}
-      svgName={(index % 2 && "superman") || null}
+      svg={key === "A" ? batmanSvg : supermanSvg}
       onHeroChange={(value) => handleChange(value, key)}
     />
   ));
