@@ -43,9 +43,11 @@ const Select = ({ value, options, label, id, error, onChange }) => {
   const [filteredOptions, setFilteredOptions] = useState([]);
   useEffect(() => {
     setFilteredOptions(
-      options.filter((option) =>
-        option.name.toLowerCase().includes(inputValue.toLowerCase())
-      )
+      inputValue
+        ? options.filter((option) =>
+            option.name.toLowerCase().includes(inputValue.toLowerCase())
+          )
+        : []
     );
     setFocusedOptionIndex(0);
   }, [inputValue, options]);
@@ -68,7 +70,7 @@ const Select = ({ value, options, label, id, error, onChange }) => {
     if (!option) {
       option = filteredOptions[focusedOptionIndex];
     }
-    if (!value || value.id !== option.id) {
+    if (option && (!value || value.id !== option.id)) {
       onChange(option);
     }
     resetSelect();
